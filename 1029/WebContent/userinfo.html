@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원정보</title>
+</head>
+<body>
+	<h1> 회원 정보 </h1>
+	<form action="/1029/userinfo.jsp">
+	<h3> 귀하가 가장 좋아하시는 언어는? </h3>
+	<select name="bestlanguage">
+		<option>-- 선택 --</option>
+		<option value="Java">JAVA</option>
+		<option value="VB">Visual Basic</option>
+		<option value="Delphi">Delphi</option>
+		<option value="PB">Power builder</option>
+		<option value="C_C++">c++</option>
+		<option value="Python">python</option>
+		
+	</select><br />
+	<h3> 귀하가 좋아하시는 과일은(복수선택가능) ? </h3>
+	<input type="checkbox" name="fruits" value="Apple">Apple<br />
+	<input type="checkbox" name="fruits" value="Banana">Banana<br />
+	<input type="checkbox" name="fruits" value="Lemon">Lemon<br />
+	<input type="checkbox" name="fruits" value="Orange">Orange<br />
+	<input type="checkbox" name="fruits" value="Grape">Grape<br />
+	<input type="checkbox" name="fruits" value="Melon">Melon<br />
+	<h3> 귀하의 입사년월일? </h3>
+	<input type="date" name="hiredate"><br />
+	<input type="submit" value="입력완료">
+</form>
+</body>
+</html>
