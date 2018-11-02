@@ -152,12 +152,12 @@
       <Context docBase="1030" path="/1030" reloadable="true" source="org.eclipse.jst.jee.server:1030"/>
       <Context docBase="1031" path="/1031" reloadable="true" source="org.eclipse.jst.jee.server:1031"/>
       <Context docBase="1101" path="/1101" reloadable="true" source="org.eclipse.jst.jee.server:1101">
-      	<Resource auth="Container" 
-      		driverClassName="org.mariadb.jdbc.Driver" maxActive="10" 
-      		maxIdle="10" maxWait="10000" name="jdbc/mymariadb" 
-      		password="121213" type="javax.sql.DataSource"
-			url="jdbc:mariadb://192.168.56.4:3306/world" username="root" />
+      	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/mymariadb" password="121213" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.56.4:3306/world" username="root"/>
 	  </Context>
+     <Context docBase="1102" path="/1102" reloadable="true" source="org.eclipse.jst.jee.server:1102"/>
+     <Context docBase="EmployeeMgmt" path="/employeemgmt" reloadable="true" source="org.eclipse.jst.jee.server:EmployeeMgmt">
+     	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/mymariadb" password="121213" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.56.4:3306/test" username="root"/>
+     </Context>
      </Host>
     </Engine>
   </Service>
