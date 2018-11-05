@@ -15,6 +15,6 @@ table:nth-child(3) th td{
 	border:1px solid black;
 }
 table:nth-child(3) th {
-	background-color:navy; color:white;
+	background-color:green; color:white;
 	height:40px;
 }

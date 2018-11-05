@@ -15,11 +15,23 @@
 					var xmlDoc = data;
 					var str = xmlDoc.getElementsByTagName('data')[0].firstChild.nodeValue;
 					var obj = JSON.parse(str);
-					console.log("count = " + obj.count);
-					console.log("message = " + obj.message);
+					$('#count').html("<span>" + obj.count + '</span>')
+					.css("color", "red");
+					var array = obj.message;
+					var str = "";
+					for(var i = 0 ; i < array.length ; i++){
+						str += "<tr>";
+						str += "<td>" + array[i].sabun + "</td><td>" + array[i].dname + "</td>";
+						str += "<td>" + array[i].gibon + "</td><td>" + array[i].jsudang + "</td>";
+						str += "<td>" + array[i].nsudang + "</td><td>" + array[i].fsudang + "</td>";
+						str += "<td>" + array[i].total + "</td><td>" + array[i].tax + "</td>";
+						str += "<td>" + array[i].salary + "</td>";
+						str += "</tr>";
+					}
+					$('#result').html(str);
 				},
 				error : function(err){
-					//console.log(err);
+					console.log("error 발생");
 				},
 				type : "GET"
 			});
@@ -31,7 +43,7 @@
 	<table border='0'>
 		<tr>
 			<td><a href="input.html">입력하기</a></td>
-			<td>[명 데이터]</td>
+			<td>[<span id='count'></span>명 데이터]</td>
 		</tr>
 	</table>
 	<table border='1'>
@@ -41,9 +53,7 @@
 				<th>야근수당</th><th>가족수당</th><th>총지급액</th><th>소득세</th><th>실수령액</th>
 			</tr>
 		</thead>
-		<tbody>
-			
-		</tbody>
+		<tbody id="result"></tbody>
 	</table>
 </body>
 </html>
