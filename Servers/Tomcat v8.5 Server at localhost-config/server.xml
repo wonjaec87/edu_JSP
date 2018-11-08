@@ -158,6 +158,17 @@
      <Context docBase="EmployeeMgmt" path="/employeemgmt" reloadable="true" source="org.eclipse.jst.jee.server:EmployeeMgmt">
      	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/mymariadb" password="121213" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.56.4:3306/test" username="root"/>
      </Context>
+     <Context docBase="1105" path="/1105" reloadable="true" source="org.eclipse.jst.jee.server:1105"/>
+     <Context docBase="1106" path="/1106" reloadable="true" source="org.eclipse.jst.jee.server:1106"/>
+     <Context docBase="standard-doc" path="/standard-doc" reloadable="true" source="org.eclipse.jst.j2ee.server:standard-doc"/>
+     <Context docBase="1107" path="/1107" reloadable="true" source="org.eclipse.jst.jee.server:1107"/>
+     <Context docBase="1108" path="/1108" reloadable="true" source="org.eclipse.jst.jee.server:1108">
+     <Resource auth="Container" 
+     		driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" 
+     		maxIdle="10" maxWait="10000" name="jdbc/myoracle" 
+     		password="TIGER" type="javax.sql.DataSource" 
+     		url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" username="SCOTT"/>
+     </Context>
      </Host>
     </Engine>
   </Service>
