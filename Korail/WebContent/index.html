@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>사원 봉급 테이블</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<script src="script/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$.ajax({
+				url : "/EmployeeMgmt/test.jsp", //test.jsp를 호출
+				dataType : "xml",
+				success : function(data){
+					var xmlDoc = data;
+					var str = xmlDoc.getElementsByTagName('data')[0].firstChild.nodeValue;  //data 부분만 사용하겠다
+					var obj = JSON.parse(str);
+					$('#count').html("<span>" + obj.count + '</span>').css("color", "red");
+					var array = obj.message; //메세지를 배열로 받음
+					var str = " ";
+					for(var i = 0 ; i <array.length ; i++){ //테이블로 만들어
+						str += "<tr>"
+						str += "<td>" + array[i].sabun + "</td><td>" + array[i].dname + "</td>";
+						str += "<td>" + array[i].gibon + "</td><td>" + array[i].jsudang + "</td>";
+						str += "<td>" + array[i].nsudang + "</td><td>" + array[i].fsudang + "</td>";
+						str += "<td>" + array[i].total + "</td><td>" + array[i].tax + "</td>";
+						str += "<td>" + array[i].salary + "</td>";
+						str += "</tr>"
+					}
+					$('#result').html(str); //id가 result인 곳에 뿌려주는 것.
+				},
+				error : function(err){
+					console.log("error 발생");
+				},
+				type : "GET"
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>사원 봉급 정보 리스트</h1>
+	<table border='0'>
+		<tr>
+			<td><a href="input.html">입력하기</a></td>
+			<td>[<span id='count'></span>명 데이터]</td>
+		</tr>
+	</table>
+	<table border='1'>
+		<thead>
+			<tr>
+				<th>사번</th><th>부서</th><th>기본급</th><th>직무급</th>
+				<th>야근수당</th><th>가족수당</th><th>총지급액</th><th>소득세</th><th>실수령액</th>
+			</tr>
+		</thead>
+		<tbody id="result"> <!-- 전체가 바뀌는게 아니라 여기만 바꿔줌.   -->
+			
+		</tbody>
+	</table>
+</body>
+</html>
+
+<!--  ajax는 전체 페이지가 아닌 jsp에 요청을 해서 데이터를 받아 필요한 부분만 바꿔줌.  -->
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>사원 봉급 테이블</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<script src="script/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$.ajax({
+				url : "/employeemgmt/servlet/Index",  //나에게 json데이터를 보내줌.
+				dataType : "xml", //서버가 데이터는 json으로 내려보낼거야
+				success : function(data){
+					//console.log(data); //들어온 jason을 객체로 파싱해서 바디사이에 뿌려줌. 
+					console.log(typeOf data);
+				},
+				error : function(err){
+					//console.log(err);
+				},
+				type : "GET",
+			}); 
+		});
+	</script>				
+</head>
+<body>
+	<h1>사원 봉급 정보 리스트</h1>
+	<table border='0'>
+		<tr>
+			<td><a href="input.html">입력하기</a></td>
+			<td>[명 데이터]</td>
+		</tr>
+	</table>
+	<table border='1'>
+		<thead>
+			<tr>
+				<th>사번</th><th>부서</th><th>기본급</th><th>직무급</th>
+				<th>야근수당</th><th>가족수당</th><th>총지급액</th><th>소득세</th><th>실수령액</th>
+			</tr>
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
+</body>
+</html>
+
+ajax 방식으로 디비 연결 -->

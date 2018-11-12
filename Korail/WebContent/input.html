@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>열차 좌석 예매 페이지</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+   <h1>열차 좌석 예매 페이지</h1>
+   <hr /><br />
+   <form method="post" action="/Korail/input.jsp">
+      <fieldset>
+         <div><label for="tsc">열차 좌석 코드 : </label>
+               <input type="text" size="15" id="tsc" name="tsc" autofocus /></div>
+         <div><label for="pcode">장소 코드 : </label>
+               <input type="text" size="15" id="pcode" name="pcode" /></div>
+         <div><label for="pn">주민등록번호 : </label>
+               <input type="text" size="20" id="pn" name="pn" />
+         <div><label for="hcode">할증 코드 : </label>
+               <input type="text" size="15" id="hcode" name="hcode" /></div>
+      </fieldset><br />
+      <center><div>
+         <button type="submit">예약하기</button>
+           <button type="reset">취소하기</button>
+       </div></center>
+   </form>
+</body>
+</html>

@@ -163,13 +163,19 @@
      <Context docBase="standard-doc" path="/standard-doc" reloadable="true" source="org.eclipse.jst.j2ee.server:standard-doc"/>
      <Context docBase="1107" path="/1107" reloadable="true" source="org.eclipse.jst.jee.server:1107"/>
      <Context docBase="1108" path="/1108" reloadable="true" source="org.eclipse.jst.jee.server:1108">
-     <Resource auth="Container" 
-     		driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" 
-     		maxIdle="10" maxWait="10000" name="jdbc/myoracle" 
-     		password="TIGER" type="javax.sql.DataSource" 
-     		url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" username="SCOTT"/>
+     <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/myoracle" password="TIGER" type="javax.sql.DataSource" url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" username="SCOTT"/>
      </Context>
-     </Host>
+     <Context docBase="1109" path="/1109" reloadable="true" source="org.eclipse.jst.jee.server:1109">
+     <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/myoracle" password="TIGER" type="javax.sql.DataSource" url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" username="SCOTT"/>
+     </Context>
+     <Context docBase="Korail" path="/Korail" reloadable="true" source="org.eclipse.jst.jee.server:Korail">
+     <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/myoracle" password="TIGER" type="javax.sql.DataSource" url="jdbc:oracle:thin:@211.238.142.148:1521:orcl" username="SCOTT"/>
+     </Context>
+     <Context docBase="1112" path="/1112" reloadable="true" source="org.eclipse.jst.jee.server:1112">
+     <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/mymariadb" password="121213" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.56.4:3306/test" username="root"/>
+     </Context>
+     <Context docBase="Membership" path="/Membership" reloadable="true" source="org.eclipse.jst.jee.server:Membership"/></Host>
+     
     </Engine>
   </Service>
 </Server>
