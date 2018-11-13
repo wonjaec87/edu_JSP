@@ -50,6 +50,6 @@
 		opener.document.myform.zippost1.value = str.substring(1, 4);
 		opener.document.myform.zippost2.value = str.substring(5, 8);
 		opener.document.myform.address1.value = str.substring(10);
-		//self.close();
+		self.close();
 	}
 </script>
