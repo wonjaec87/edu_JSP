@@ -19,7 +19,6 @@ public class SelectController {
 		int flag = -1;
 		try {
 			flag = MemberDAO.loginMember(userid, passwd);
-			System.out.println(flag);
 		}catch(SQLException ex) {
 			System.out.println(ex);
 		}

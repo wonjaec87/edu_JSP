@@ -32,7 +32,7 @@
 	</thead>
 	<tbody>
 		<c:forEach items="${rs.getRows()}" var="row">
-			<tr id="${row.zipcode} ${row.sido} ${row.gugun} ${row.dong}">
+			<tr id="(${row.zipcode}) ${row.sido} ${row.gugun} ${row.dong}">
 				<td>${row.zipcode}</td>
 				<td>${row.sido}</td>
 				<td>${row.gugun}</td>

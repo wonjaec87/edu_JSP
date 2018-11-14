@@ -15,8 +15,6 @@
 	int row = ic.insertMember(member);
 	pageContext.setAttribute("row", row);
 %>
-
-
 <c:if test="${row eq 1}">
 	<script>
 		alert("Insert Success");
@@ -29,3 +27,11 @@
 		history.back();
 	</script>
 </c:if>
+
+
+
+
+
+
+
+

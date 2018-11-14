@@ -8,7 +8,7 @@ public class MemberVO {
 	
 	public MemberVO() {}  //for Java Bean
 	
-	public MemberVO(String username, String userid, String passwd, String email, Date regdate) {                              this.username = username;
+	public MemberVO(String username, String userid, String passwd, String email, Date regdate) {this.username = username;
 		this.username = username;           	this.userid = userid;
 		this.passwd = passwd;                   this.email = email;
 		this.regdate = regdate;

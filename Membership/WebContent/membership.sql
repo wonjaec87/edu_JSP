@@ -65,3 +65,36 @@ BEGIN
 	WHERE userid = p_userid;
 END; 
 
+CREATE OR REPLACE PROCEDURE member_select
+(
+	p_userid           IN         member.userid%TYPE,
+	member_record        OUT    SYS_REFCURSOR     
+)
+AS
+BEGIN
+	OPEN member_record FOR
+	SELECT * FROM MEMBER
+	WHERE userid = p_userid;
+END; 
+
+
+CREATE OR REPLACE PROCEDURE member_update
+(
+	userid
+)
+
+CREATE OR REPLACE PROCEDURE member_update
+(
+	p_userid           IN        member.userid%TYPE,
+	p_email           IN        member.email%TYPE,
+	p_zipcode           IN        member.zipcode%TYPE,
+	p_address1           IN        member.address1%TYPE,
+	p_address2           IN        member.address2%TYPE
+)
+IS
+BEGIN
+	UPDATE MEMBER SET email = p_email, zipcode = p_zipcode,
+	address1 = p_address1, address2 = p_address2
+	WHERE userid = p_userid;
+	COMMIT;
+END; 
