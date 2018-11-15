@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<sql:setDataSource driver="oracle.jdbc.driver.OracleDriver" 
-	url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" user="SCOTT" 
-	password="TIGER" var="conn" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +35,7 @@
 		<p class="lead">
 			<c:if test="${empty sessionScope.username}">
 				<!-- <a class="btn btn-warning btn-lg" href="login.html" role="button">로그인</a> -->
-				<a class="btn btn-warning btn-lg" href="login1.jsp" role="button">로그인</a>
+				<a class="btn btn-warning btn-lg" href="login.html" role="button">로그인</a>
 			</c:if>
 			<c:if test="${not(empty sessionScope.username)}">
 			[${sessionScope.username}(${sessionScope.userid})]

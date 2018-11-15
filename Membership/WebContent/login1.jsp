@@ -31,7 +31,7 @@
 </html>
 <%!
 	private String getURI() throws Exception{
-		return URLEncoder.encode("http://localhost:8080/Membership/navercallback.jsp", "UTF-8");
+		return URLEncoder.encode("http://www.example.com/Membership/navercallback.jsp", "UTF-8");
 	}
 %>
 <%! 
