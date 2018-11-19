@@ -174,8 +174,11 @@
      <Context docBase="1112" path="/1112" reloadable="true" source="org.eclipse.jst.jee.server:1112">
      <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/mymariadb" password="121213" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.56.4:3306/test" username="root"/>
      </Context>
-     <Context docBase="Membership" path="/Membership" reloadable="true" source="org.eclipse.jst.jee.server:Membership"/><Context docBase="myweb" path="/myweb" reloadable="true" source="org.eclipse.jst.jee.server:myweb"/><Context docBase="Gesipan" path="/Gesipan" reloadable="true" source="org.eclipse.jst.jee.server:Gesipan"/></Host>
-     
+     <Context docBase="Membership" path="/Membership" reloadable="true" source="org.eclipse.jst.jee.server:Membership"/>
+     <Context docBase="Gesipan" path="/Gesipan" reloadable="true" source="org.eclipse.jst.jee.server:Gesipan">
+     <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/myoracle" password="TIGER" type="javax.sql.DataSource" url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" username="SCOTT"/>
+     </Context>
+     <Context docBase="Test_Web" path="/Test_Web" reloadable="true" source="org.eclipse.jst.jee.server:Test_Web"/><Context docBase="WebPage" path="/WebPage" reloadable="true" source="org.eclipse.jst.jee.server:WebPage"/></Host>
     </Engine>
   </Service>
 </Server>
