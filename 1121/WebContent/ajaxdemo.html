@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax File Type : Text</title>
+	<script>
+	window.addEventListener('load', setup);
+	function setup(){
+		document.getElementById("btnGetData").addEventListener('click', myclick);
+	}
+	var xhr = null;
+	function myclick(){
+		//1. 
+		xhr = new XMLHttpRequest();
+		//2. 
+		xhr.onreadystatechange = callback;
+		//3. 
+		xhr.open("GET", "sungjuk_utf8.csv");
+		//4. 
+		xhr.send(null);
+	}
+	function callback(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var str="";
+			var result = xhr.responseText;
+			var array = result.split('\n');
+			for(var i = 0; i< array.length; i++){
+				str+= "<tr>";
+				var student = array[i];
+				var array2 = student.split(",");
+				for(var j = 0; j<array2.length; j++){
+					str += "<td style='border:1px solid black'>" + array2[j] + "</td>";
+				}
+				str += "</tr>";
+			}
+			document.getElementById("result").innerHTML = str;
+		}	 
+		
+	}
+	</script>
+</head>
+<body>
+	<h1>성적 데이터 : Text File</h1>
+	<input type="button" value="Get Data" id="btnGetData"/><br />
+	<table style="border-collapse:collapse;border:1px solid black;width:600px;margin-left:auto;margin-right:auto">
+		<thead>
+			<tr style="background-color:green;color:white">
+				<th>번호</th><th>이름</th><th>국어</th><th>영어</th>
+				<th>수학</th><th>전산</th>
+			</tr>
+		</thead>
+		<tbody id="result"></tbody>
+	</table>
+</body>
+</html>

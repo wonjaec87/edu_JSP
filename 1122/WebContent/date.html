@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="script/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$("#txtToday").bind("blur", function(){
+				$.get({
+					url : "date.jsp",
+					success : function(data){
+						$("#txtToday").val(data);
+					}
+				});	
+			});
+		});
+	</script>
+	</head>
+	<body>
+		<input type="text" id="txtToday" size="40" />
+	</body>
+</html>

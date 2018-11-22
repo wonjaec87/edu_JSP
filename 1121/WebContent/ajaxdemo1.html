@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax File Type : XML</title>
+	<style type="text/css">
+		td { border : 1px solid black}
+	</style>
+	<script>
+		window.addEventListener('load', setup);
+		function setup(){
+			document.getElementById("btnGetData").addEventListener('click', myclick);
+		}
+		var xhr;
+		function myclick(){
+			xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = callback;
+			xhr.open("GET", "books.xml");
+			xhr.send(null);
+		}
+		function callback(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var result = "";
+				var xmlDoc = xhr.responseXML;
+				var list = xmlDoc.getElementsByTagName("book");
+				for(var i = 0 ; i < list.length ; i++){
+					result += "<tr>";
+					var book = list.item(i);
+					var title = book.getElementsByTagName("title")[0];
+					result += "<td>" + title.firstChild.nodeValue + "</td>";
+					var author = book.getElementsByTagName("author")[0];
+					result += "<td>" + author.firstChild.nodeValue + "</td>";
+					var price = book.getElementsByTagName("price")[0];
+					result += "<td>" + price.firstChild.nodeValue + "</td>";
+					result += "</tr>";
+				}
+				document.getElementById("result").innerHTML = result;
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>Books : XML File</h1>
+	<input type="button" value="Get Data" id="btnGetData"/><br />
+	<table style="border-collapse:collapse;border:1px solid black;width:500px;margin-left:auto;margin-right:auto">
+		<thead>
+			<tr style="background-color:navy;color:white">
+				<th style="width:50%">제목</th><th style="width:25%">저자</th>
+				<th style="width:25%">가격</th>
+			</tr>
+		</thead>
+		<tbody id="result"></tbody>
+	</table>
+</body>
+</html>

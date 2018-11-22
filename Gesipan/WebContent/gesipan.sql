@@ -31,19 +31,23 @@ ON gesipan(title);
 
 CREATE OR REPLACE PROCEDURE board_insert
 (
-	p_name	IN	gesipan.name%TYPE,
-	p_passwd	IN	gesipan.name%TYPE,
-	p_email	IN	gesipan.name%TYPE,
-	p_title	IN	gesipan.name%TYPE,
-	p_contents	IN	gesipan.name%TYPE,
-	p_filename	IN	gesipan.name%TYPE
+	p_name           IN         gesipan.name%TYPE,
+	p_passwd           IN         gesipan.passwd%TYPE,
+	p_email           IN         gesipan.email%TYPE,
+	p_title           IN         gesipan.title%TYPE,
+	p_contents           IN         gesipan.contents%TYPE,
+	p_filename           IN         gesipan.filename%TYPE,
+	p_grp                   IN         gesipan.grp%TYPE,
+	p_lev                   IN          gesipan.lev%TYPE,
+	p_step                 IN           gesipan.step%TYPE
 )
 IS
 BEGIN
-		INSERT INTO Gesipan
-		VALUES(board_idx_seq.NEXTVAL, p_name, p_passwd, p_email, p_title, p_contents, SYSDATE, 0, p_filename, board_idx_seq.CURRVAL, 0,0);
-		COMMIT;
-		END;
+	INSERT INTO Gesipan 
+	VALUES (board_idx_seq.NEXTVAL, p_name, p_passwd, p_email, p_title, p_contents,
+	               SYSDATE, 0, p_filename, p_grp, p_lev, p_step);
+	COMMIT;
+END; 
 		
 		
 		
@@ -54,7 +58,7 @@ CREATE OR REPLACE procedure board_selectAll
 AS
 BEGIN
    OPEN board_record FOR
-   SELECT idx, name, email, title, writedate, readnum
+   SELECT idx, name, email, title, filename, writedate, readnum, grp, lev, step
    FROM GESIPAN ORDER BY grp DESC, step ASC;
 END;
 
@@ -140,3 +144,14 @@ BEGIN
 	COMMIT;
 END; 
 
+CREATE OR REPLACE PROCEDURE board_select_filename
+(
+	p_idx	IN	gesipan.idx%TYPE,
+	p_filename	OUT gesipan.filename%TYPE
+)
+IS
+BEGIN
+	SELECT filename INTO p_filename
+	FROM Gesipan
+	WHERE idx = p_idx;
+END;

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax File Type : XML</title>
+	<style type="text/css">
+		td { border : 1px solid black}
+	</style>
+	<script>
+		window.addEventListener('load', setup);
+		function setup(){
+			document.getElementById("btnGetData").addEventListener('click', myclick);
+		}
+		var xhr;
+		function myclick(){
+			xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = callback;
+			xhr.open("GET", "sungjuk_utf8.xml");
+			xhr.send(null);
+		}
+		function callback(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var result = "";
+				var xmlDoc = xhr.responseXML;
+				var list = xmlDoc.getElementsByTagName("student");
+				for(var i = 0 ; i < list.length ; i++){
+					result += "<tr>";
+					var student = list.item(i);
+					var hakbun = student.getAttribute("hakbun");
+					result += "<td>" + hakbun + "</td>"; 
+					var irum = student.getElementsByTagName("irum").item(0);
+					result += "<td>" + irum.firstChild.nodeValue + "</td>";
+					var kor = student.getElementsByTagName("kor")[0];
+					result += "<td>" + kor.firstChild.nodeValue + "</td>";
+					var eng = student.getElementsByTagName("eng")[0];
+					result += "<td>" + eng.firstChild.nodeValue + "</td>";
+					var mat = student.getElementsByTagName("mat")[0];
+					result += "<td>" + mat.firstChild.nodeValue + "</td>";
+					var edp = student.getElementsByTagName("edp")[0];
+					result += "<td>" + edp.firstChild.nodeValue + "</td>";
+					result += "</tr>"; 
+				}
+				document.getElementById("result").innerHTML = result;
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>성적데이터 : XML File</h1>
+	<input type="button" value="Get Data" id="btnGetData"/><br />
+	<table style="border-collapse:collapse;border:1px solid black;width:600px;margin-left:auto;margin-right:auto">
+		<thead>
+			<tr style="background-color:navy;color:white">
+				<th>학번</th><th>이름</th><th>국어</th><th>영어</th>
+				<th>수학</th><th>전산</th>
+			</tr>
+		</thead>
+		<tbody id="result"></tbody>
+	</table>
+</body>
+</html>

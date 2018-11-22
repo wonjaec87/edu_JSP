@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax Demo</title>
+	<script>
+		window.onload = function(){
+			document.getElementById("txtToday").onblur = function(){
+				//Step 1. XMLHttpRequest 객체 생성하기
+				var xhr = new XMLHttpRequest();
+				//Step 2. onreadystatechange 작성하기
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4 && xhr.status == 200)//1. 첫째 조건
+						if(xhr.responseURL == "http://localhost:8080/1121/date.jsp" && 
+								(xhr.responseType == "" || xhr.responseType == "text"))//2. 둘째 조건
+							document.getElementById("txtToday").value = xhr.responseText;
+				};
+				//Step 3. Open한다.
+				xhr.open("GET", "date.jsp");
+				//Step 4. Send한다.
+				xhr.send(null);
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id="txtToday" size="50" />
+</body>
+</html>

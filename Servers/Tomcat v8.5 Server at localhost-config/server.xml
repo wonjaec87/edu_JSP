@@ -178,7 +178,7 @@
      <Context docBase="Gesipan" path="/Gesipan" reloadable="true" source="org.eclipse.jst.jee.server:Gesipan">
      <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/myoracle" password="TIGER" type="javax.sql.DataSource" url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" username="SCOTT"/>
      </Context>
-     <Context docBase="Test_Web" path="/Test_Web" reloadable="true" source="org.eclipse.jst.jee.server:Test_Web"/><Context docBase="WebPage" path="/WebPage" reloadable="true" source="org.eclipse.jst.jee.server:WebPage"/></Host>
+     <Context docBase="Test_Web" path="/Test_Web" reloadable="true" source="org.eclipse.jst.jee.server:Test_Web"/><Context docBase="WebPage" path="/WebPage" reloadable="true" source="org.eclipse.jst.jee.server:WebPage"/><Context docBase="1121" path="/1121" reloadable="true" source="org.eclipse.jst.jee.server:1121"/><Context docBase="1122" path="/1122" reloadable="true" source="org.eclipse.jst.jee.server:1122"/></Host>
     </Engine>
   </Service>
 </Server>

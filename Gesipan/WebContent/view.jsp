@@ -63,7 +63,10 @@
 			<th>조회수</th><td>${gesipan.getReadnum()}</td>
 		</tr>
 		<tr>
-			<th>첨부파일</th><td colspan="3">${gesipan.getFilename()}</td>
+			<th>첨부파일</th>
+			<td colspan="3">
+				<a href="download.jsp?idx=${param.idx}&filename=${gesipan.getFilename()}">${gesipan.getFilename()}</a>
+			</td>
 		</tr>
 	</table><br />
 	<table border='1'>

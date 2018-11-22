@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax 방식</title>
+</head>
+<script>
+	window.addEventListener('load',setup, false);
+	
+	var xhr;
+	function setup(){
+		document.getElementById("btnCalcu").addEventListener('click',myclick);
+	}
+		function myclick(){
+		//Step 1.
+		xhr = new XMLHttpRequest();
+		var param = "num1=" + document.getElementById("num1").value + "&";
+		param += "num2=" + document.getElementById("num2").value;
+		//Step 2.
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				document.getElementById("result").innerHTML = 	xhr.responseText;
+			}
+			
+		};
+		//Step 3.
+		xhr.open('GET','usingajax.jsp?' + param,true);
+		xhr.send(null);
+	}
+</script>
+<body>
+	<ul>
+		<li>num1 : <input type="number" id="num1" /><br /></li>
+		<li>num2 : <input type="number" id="num2" /><br /></li>
+		<li><input type="button" value="계산하기" id="btnCalcu"></li>
+		<li>Result : <span id="result"> </span></li>
+	</ul>
+</body>
+</html>
