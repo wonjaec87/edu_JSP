@@ -160,7 +160,7 @@
      </Context>
      <Context docBase="1105" path="/1105" reloadable="true" source="org.eclipse.jst.jee.server:1105"/>
      <Context docBase="1106" path="/1106" reloadable="true" source="org.eclipse.jst.jee.server:1106"/>
-     <Context docBase="standard-doc" path="/standard-doc" reloadable="true" source="org.eclipse.jst.j2ee.server:standard-doc"/>
+     
      <Context docBase="1107" path="/1107" reloadable="true" source="org.eclipse.jst.jee.server:1107"/>
      <Context docBase="1108" path="/1108" reloadable="true" source="org.eclipse.jst.jee.server:1108">
      <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/myoracle" password="TIGER" type="javax.sql.DataSource" url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" username="SCOTT"/>
@@ -178,7 +178,7 @@
      <Context docBase="Gesipan" path="/Gesipan" reloadable="true" source="org.eclipse.jst.jee.server:Gesipan">
      <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/myoracle" password="TIGER" type="javax.sql.DataSource" url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" username="SCOTT"/>
      </Context>
-     <Context docBase="Test_Web" path="/Test_Web" reloadable="true" source="org.eclipse.jst.jee.server:Test_Web"/><Context docBase="WebPage" path="/WebPage" reloadable="true" source="org.eclipse.jst.jee.server:WebPage"/><Context docBase="1121" path="/1121" reloadable="true" source="org.eclipse.jst.jee.server:1121"/><Context docBase="1122" path="/1122" reloadable="true" source="org.eclipse.jst.jee.server:1122"/></Host>
+     <Context docBase="Test_Web" path="/Test_Web" reloadable="true" source="org.eclipse.jst.jee.server:Test_Web"/><Context docBase="WebPage" path="/WebPage" reloadable="true" source="org.eclipse.jst.jee.server:WebPage"/><Context docBase="1121" path="/1121" reloadable="true" source="org.eclipse.jst.jee.server:1121"/><Context docBase="1122" path="/1122" reloadable="true" source="org.eclipse.jst.jee.server:1122"/><Context docBase="1123" path="/1123" reloadable="true" source="org.eclipse.jst.jee.server:1123"/></Host>
     </Engine>
   </Service>
 </Server>

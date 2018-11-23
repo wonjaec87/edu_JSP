@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="script/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$("#btnSearch").click(function(){
+				$.ajax({
+					url : "navermovie.jsp?query=" + 
+							encodeURI(encodeURIComponent($("#movietitle").val())),
+					method : "get",
+					dataType : "json",
+					error : function(err){
+						console.log(err);
+					},
+					success : function(data){
+						var str = "";
+						var array = data.items;
+						for(var i = 0 ; i < array.length ; i++){
+							str += "<tr>";
+							str += "<td>" + (i + 1) + "</td>";
+							var img = "<img src='" + array[i].image + "' width='50' height='50'>";
+							str += "<td>" + img + "</td>";
+							str += "<td>" + array[i].title + "</td>";
+							str += "<td>" + array[i].director + "</td>";
+							str += "<td>" + array[i].actor + "</td>";
+							str += "<td>" + array[i].pubDate + "</td>";
+							str += "</tr>";
+						}
+						$("#result").html(str);
+					}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<h3>Naver Movie Search</h3>
+	영화제목 : <input type="text" id="movietitle" />
+	<input type="button" value="Search" id="btnSearch"/>
+	<br /><br />
+	<table border='1' style="width:70%;margin-left:auto;margin-right:auto">
+		<thead>
+			<tr>
+				<th style="width:5%">번호</th>
+				<th style="width:25%">영화이미지</th>
+				<th style="width:30%">제목</th>
+				<th style="width:15%">감독</th>
+				<th style="width:15%">배우</th>
+				<th style="width:10%">상연연도</th>
+			</tr>
+		</thead>
+		<tbody id="result"></tbody>
+	</table>
+</body>
+</html>
