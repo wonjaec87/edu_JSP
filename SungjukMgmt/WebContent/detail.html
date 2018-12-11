@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery.min.js"></script>
+<script>
+	$(function(){
+		var hakbun = location.search.substring(location.search.lastIndexOf("=") + 1);
+		$.get("detail.jsp", {"hakbun" : hakbun}, function(data){
+			var data = data.data;
+			$("#username").text(data.name).css("color", "blue");
+			$("#txtHakbun").text(data.hakbun);
+			$("#labelHakbun").val(data.hakbun);
+			$("#txtKor").val(data.kor);
+			$("#txtEng").val(data.eng);
+			$("#txtMat").val(data.mat);
+			$("#txtEdp").val(data.edp);
+			$("#txtSum").text(data.sum);
+			$("#txtAvg").text(data.avg);
+			$("#txtGrade").text(data.grade);
+		}, "json");
+		
+		$("#btnList").bind("click", function(){
+			location.href = "index.html";
+		});
+		
+		$("#btnDelete").bind("click", function(){
+			location.href = "delete.jsp?hakbun=" + hakbun;
+		});
+	});
+</script>
+</head>
+<body>
+	<h3><span id="username"></span>의 성적</h3>
+	<form action="update.jsp" method="post">
+		<input type="hidden" name="hakbun" id="labelHakbun" />
+		<ul>
+			<li>학번 : <span id="txtHakbun"></span></li>
+			<li>국어 : <input type="number" name="kor" id="txtKor" /></li>
+			<li>영어 : <input type="number" name="eng" id="txtEng" /></li>
+			<li>수학 : <input type="number" name="mat" id="txtMat" /></li>
+			<li>전산 : <input type="number" name="edp" id="txtEdp" /></li>
+			<li>총점 : <span id="txtSum"></span></li>
+			<li>평균 : <span id="txtAvg"></span></li>
+			<li>평점 : <span id="txtGrade"></span></li>
+			<li><button type="submit" id="btnUpdate">수정하기</button></li>
+			<li><button type="button" id="btnList">목록으로</button></li>
+			<li><button type="button" id="btnDelete">삭제하기</button></li>
+		</ul>
+	</form>
+</body>
+</html>

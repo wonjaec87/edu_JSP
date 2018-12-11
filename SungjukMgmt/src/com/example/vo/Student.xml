@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.vo.StudentVO">
+	<resultMap type="StudentVO" id="studentMap">
+		<result column="hakbun" property="hakbun"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result column="name" property="name"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result column="kor" property="kor"
+			javaType="java.lang.Integer" jdbcType="TINYINT" />
+		<result column="eng" property="eng"
+			javaType="java.lang.Integer" jdbcType="TINYINT" />
+		<result column="mat" property="mat"
+			javaType="java.lang.Integer" jdbcType="TINYINT" />
+		<result column="edp" property="edp"
+			javaType="java.lang.Integer" jdbcType="TINYINT" />
+		<result column="sum" property="sum"
+			javaType="java.lang.Integer" jdbcType="SMALLINT" />
+		<result column="avg" property="avg" javaType="java.lang.Double"
+			jdbcType="DOUBLE" />
+		<result column="grade" property="grade"
+			javaType="java.lang.Character" jdbcType="CHAR" />
+	</resultMap>
+	<select id="selectAll" resultType="studentVO"
+		resultMap="studentMap">
+		SELECT * FROM Student ORDER BY sum DESC
+	</select>
+	
+	<parameterMap type="hashMap" id="selectAllMap">
+		<parameter property="results" javaType="java.sql.ResultSet" 
+			jdbcType="CURSOR" mode="OUT" resultMap="studentMap"/>
+	</parameterMap>
+	<select id="selectAllSP" statementType="CALLABLE" parameterMap="selectAllMap">
+		{ call sp_student_select(?)}
+	</select>
+
+	<select id="selectOne" parameterType="String"
+		resultType="studentVO" resultMap="studentMap">
+		SELECT * FROM Student WHERE hakbun =
+		#{hakbun}
+	</select>
+	
+	<parameterMap type="hashMap" id="selectOneMap">
+		<parameter property="hakbun" mode="IN" 
+			javaType="java.lang.String" jdbcType="CHAR"/>
+		<parameter property="result" mode="OUT" 
+			javaType="java.sql.ResultSet" jdbcType="CURSOR" resultMap="studentMap"/>	
+	</parameterMap>
+	
+	<select id="selectOneSP" parameterMap="selectOneMap" statementType="CALLABLE">
+		{ call sp_student_select_one(?,?)}
+	</select>
+
+	<insert id="insert" parameterType="StudentVO">
+		INSERT INTO Student
+		VALUES(#{hakbun}, #{name}, #{kor}, #{eng}, #{mat}, #{edp},
+		#{sum},
+		#{avg}, #{grade})
+	</insert>
+
+	<parameterMap type="StudentVO" id="insertMap">
+		<parameter property="hakbun" mode="IN"
+			javaType="java.lang.String" jdbcType="CHAR" />
+		<parameter property="name" mode="IN"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<parameter property="kor" mode="IN"
+			javaType="java.lang.Integer" jdbcType="INTEGER" />
+		<parameter property="eng" mode="IN"
+			javaType="java.lang.Integer" jdbcType="INTEGER" />
+		<parameter property="mat" mode="IN"
+			javaType="java.lang.Integer" jdbcType="INTEGER" />
+		<parameter property="edp" mode="IN"
+			javaType="java.lang.Integer" jdbcType="INTEGER" />
+		<parameter property="sum" mode="IN"
+			javaType="java.lang.Integer" jdbcType="INTEGER" />
+		<parameter property="avg" mode="IN"
+			javaType="java.lang.Double" jdbcType="DOUBLE" />
+		<parameter property="grade" mode="IN"
+			javaType="java.lang.Character" jdbcType="CHAR" />
+	</parameterMap>
+
+	<insert id="insertSP" parameterMap="insertMap">
+		{ call sp_student_insert(?,?,?,?,?,?,?,?,?)}
+	</insert>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM Student WHERE
+		hakbun = #{hakbun}
+	</delete>
+
+	<parameterMap type="String" id="deleteMap">
+		<parameter property="hakbun" mode="IN"
+			javaType="java.lang.String" jdbcType="CHAR" />
+	</parameterMap>
+
+	<delete id="deleteSP" parameterType="String"
+		parameterMap="deleteMap">
+		{ call sp_student_delete(?)}
+	</delete>
+
+	<update id="update" parameterType="StudentVO">
+		UPDATE Student SET kor =
+		#{kor}, eng = #{eng}, mat = #{mat},
+		edp = #{edp}, sum = #{sum}, avg =
+		#{avg}, grade = #{grade}
+		WHERE hakbun = #{hakbun}
+	</update>
+	
+	<update id="updateSP" parameterType="StudentVO">
+		{ call sp_student_update(#{hakbun}, #{kor}, #{eng}, #{mat}, #{edp}, #{sum}, #{avg}, #{grade})}
+	</update>
+
+</mapper>
+
+
+
+

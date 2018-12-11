@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>쌍용고등학교 성적표</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery.min.js"></script>
+<script>
+	$(function(){
+		$.ajax({
+			url : "index.jsp",
+			type : "GET",
+			dataType : "json",
+			success : function(data){
+				var count = data.data.length;
+				$('#cnt').text(count).css("color", "red");
+				if(count == 0){
+					$("#result").html("<tr><td colspan='6'>현재 등록된 학생이 없습니다.</td></tr>");
+				}else{
+					var str = "";
+					for(var i = 0 ; i < count ; i++){
+						var s = data.data[i];
+						str += "<tr>";
+						str += "<td><a href='detail.html?hakbun=" + s.hakbun + "'>" + s.hakbun + "</a></td><td>" + s.name + "</td>" +
+						           "<td>" + s.kor + "</td><td>" + s.eng + "</td>" +
+						           "<td>" + s.mat + "</td><td>" + s.edp + "</td>";
+						str += "</tr>";
+					}
+					$("#result").html(str);
+				}
+			},
+			error : function(error){
+				console.log("error 발생 = " + error);
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<h1>쌍용 고등학교 성적 리스트</h1>
+	<table border='0'>
+		<tbody>
+			<tr>
+				<td><a href='/SungjukMgmt/input.html'>학생 입력하기</a></td>
+				<td>(<span id="cnt"></span>명)</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>학번</th><th>이름</th><th>국어</th>
+				<th>영어</th><th>수학</th><th>전산</th>
+			</tr>
+		</thead>
+		<tbody id="result">
+		</tbody>
+	</table>
+</body>
+</html>

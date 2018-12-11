@@ -105,7 +105,7 @@
     -->
 
     <!-- Define an AJP 1.3 Connector on port 8009 -->
-    <Connector address="192.168.56.1" enableLookups="true" port="8009" protocol="AJP/1.3" redirectPort="8443"/>
+    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443"/>
 
 
     <!-- An Engine represents the entry point (within Catalina) that processes
@@ -117,7 +117,7 @@
     <!-- You should set jvmRoute to support load-balancing via AJP ie :
     <Engine name="Catalina" defaultHost="localhost" jvmRoute="jvm1">
     -->
-    <Engine defaultHost="192.168.56.1" name="Catalina">
+    <Engine defaultHost="localhost" name="Catalina">
 
       <!--For clustering, please take a look at documentation at:
           /docs/cluster-howto.html  (simple how to)
@@ -136,7 +136,8 @@
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
       </Realm>
 
-      <Host appBase="webapps" autoDeploy="true" name="192.168.56.1" unpackWARs="true">
+      <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
+      
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
         <!--
@@ -148,37 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="1029" path="/1029" reloadable="true" source="org.eclipse.jst.jee.server:1029"/>
-      <Context docBase="1030" path="/1030" reloadable="true" source="org.eclipse.jst.jee.server:1030"/>
-      <Context docBase="1031" path="/1031" reloadable="true" source="org.eclipse.jst.jee.server:1031"/>
-      <Context docBase="1101" path="/1101" reloadable="true" source="org.eclipse.jst.jee.server:1101">
-      	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/mymariadb" password="121213" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.56.4:3306/world" username="root"/>
-	  </Context>
-     <Context docBase="1102" path="/1102" reloadable="true" source="org.eclipse.jst.jee.server:1102"/>
-     <Context docBase="EmployeeMgmt" path="/employeemgmt" reloadable="true" source="org.eclipse.jst.jee.server:EmployeeMgmt">
-     	<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/mymariadb" password="121213" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.56.4:3306/test" username="root"/>
-     </Context>
-     <Context docBase="1105" path="/1105" reloadable="true" source="org.eclipse.jst.jee.server:1105"/>
-     <Context docBase="1106" path="/1106" reloadable="true" source="org.eclipse.jst.jee.server:1106"/>
-     
-     <Context docBase="1107" path="/1107" reloadable="true" source="org.eclipse.jst.jee.server:1107"/>
-     <Context docBase="1108" path="/1108" reloadable="true" source="org.eclipse.jst.jee.server:1108">
-     <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/myoracle" password="TIGER" type="javax.sql.DataSource" url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" username="SCOTT"/>
-     </Context>
-     <Context docBase="1109" path="/1109" reloadable="true" source="org.eclipse.jst.jee.server:1109">
-     <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/myoracle" password="TIGER" type="javax.sql.DataSource" url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" username="SCOTT"/>
-     </Context>
-     <Context docBase="Korail" path="/Korail" reloadable="true" source="org.eclipse.jst.jee.server:Korail">
-     <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/myoracle" password="TIGER" type="javax.sql.DataSource" url="jdbc:oracle:thin:@211.238.142.148:1521:orcl" username="SCOTT"/>
-     </Context>
-     <Context docBase="1112" path="/1112" reloadable="true" source="org.eclipse.jst.jee.server:1112">
-     <Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/mymariadb" password="121213" type="javax.sql.DataSource" url="jdbc:mariadb://192.168.56.4:3306/test" username="root"/>
-     </Context>
-     <Context docBase="Membership" path="/Membership" reloadable="true" source="org.eclipse.jst.jee.server:Membership"/>
-     <Context docBase="Gesipan" path="/Gesipan" reloadable="true" source="org.eclipse.jst.jee.server:Gesipan">
-     <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="10" maxWait="10000" name="jdbc/myoracle" password="TIGER" type="javax.sql.DataSource" url="jdbc:oracle:thin:@192.168.56.4:1521:orcl" username="SCOTT"/>
-     </Context>
-     <Context docBase="Test_Web" path="/Test_Web" reloadable="true" source="org.eclipse.jst.jee.server:Test_Web"/><Context docBase="WebPage" path="/WebPage" reloadable="true" source="org.eclipse.jst.jee.server:WebPage"/><Context docBase="1121" path="/1121" reloadable="true" source="org.eclipse.jst.jee.server:1121"/><Context docBase="1122" path="/1122" reloadable="true" source="org.eclipse.jst.jee.server:1122"/><Context docBase="1123" path="/1123" reloadable="true" source="org.eclipse.jst.jee.server:1123"/></Host>
+      <Context docBase="WebPage" path="/WebPage" reloadable="true" source="org.eclipse.jst.jee.server:WebPage"/><Context docBase="1126" path="/1126" reloadable="true" source="org.eclipse.jst.jee.server:1126"/><Context docBase="Gesipan" path="/Gesipan" reloadable="true" source="org.eclipse.jst.jee.server:Gesipan"/><Context docBase="Membership" path="/Membership" reloadable="true" source="org.eclipse.jst.jee.server:Membership"/><Context docBase="EmployeeMgmt" path="/EmployeeMgmt" reloadable="true" source="org.eclipse.jst.jee.server:EmployeeMgmt"/><Context docBase="SungjukMgmt" path="/SungjukMgmt" reloadable="true" source="org.eclipse.jst.jee.server:SungjukMgmt"/></Host>
     </Engine>
   </Service>
 </Server>

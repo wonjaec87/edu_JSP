@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>전자신문 오늘의 뉴스</title>
+	<script src="script/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$.ajax({
+				url : "movie.jsp",
+				method : "get",
+				dataType : "xml",
+				error : function(err){
+					console.log(err);
+				},
+				success : function(data){
+					var xmlDoc = data;
+					var array = xmlDoc.getElementsByTagName("dailyBoxOffice");
+					var str = "";
+					for(var i = 0 ; i < array.length ; i++){
+						var item = array[i];
+						str += "<tr><td>" + (i + 1) + "</td>";
+						var rank = item.getElementsByTagName("rank").item(0);
+						rank = rank.firstChild.nodeValue;
+						str += "<td>" + rank + "</td>";
+						var movieNm = item.getElementsByTagName("movieNm").item(0);
+						movieNm = movieNm.firstChild.nodeValue;
+						str += "<td>" + movieNm + "</td>";
+						var openDt = item.getElementsByTagName("openDt").item(0);
+						openDt = openDt.firstChild.nodeValue;
+						str += "<td>" + openDt + "</td>";
+						var audiCnt = item.getElementsByTagName("audiCnt").item(0);
+						audiCnt = audiCnt.firstChild.nodeValue;
+						str += "<td>" + audiCnt + "</td>";
+						str += "</tr>";
+					}
+					$("#result").html(str);
+					$("h3").html( new Date() + "자 영화순위")
+					.css("text-align", "center");
+				}
+			});
+		});
+		
+	</script>
+</head>
+<body>
+	<h3></h3>
+	<table border='1' style="width:70%;margin-left:auto;margin-right:auto">
+		<thead>
+			<tr>
+				<th style="width:5%">No.</th>
+				<th style="width:5%">순위</th>
+				<th style="width:50%">영화이름</th>
+				<th style="width:15%">날짜</th>
+				<th style="width:25%">관객</th>
+			</tr>
+		</thead>
+		<tbody id="result"></tbody>
+	</table>
+</body>
+</html>
+
+
+
+
